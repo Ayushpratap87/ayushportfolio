@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush Pratap Singh | Tech Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #050505;
+            --primary: #00ffcc;
+            --secondary: #bf00ff;
+            --text-light: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--primary);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin: 0 15px;
+            font-family: 'Share Tech Mono', monospace;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Page Sections */
+        section {
+            min-height: 100vh;
+            padding: 100px 10vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+            display: inline-block;
+            text-shadow: 0 0 15px rgba(191, 0, 255, 0.5);
+        }
+
+        /* 1. Hero / Home */
+        #home {
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        #particles-js {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 25px rgba(0, 255, 204, 0.6);
+            margin-bottom: 20px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .typewriter-container {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            text-transform: uppercase;
+            text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            cursor: pointer;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .btn-secondary {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px var(--secondary);
+        }
+
+        /* Grid Layouts for modular sections */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 255, 204, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.2);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card p, .card li {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        /* 8. Contact Form */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        input, textarea {
+            background: transparent;
+            border: 1px solid #333;
+            padding: 15px;
+            color: var(--text-light);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            border-radius: 5px;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+        }
+
+        .contact-links {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div style="color: var(--primary); font-family: 'Share Tech Mono'; font-size: 1.2rem; font-weight: bold;">APS_OS v1.0</div>
+        <div>
+            <a href="#home">01. Home</a>
+            <a href="#about">02. About</a>
+            <a href="#skills">03. Skills</a>
+            <a href="#experience">04. Experience</a>
+            <a href="#projects">05. Projects</a>
+            <a href="#education">06. Education</a>
+            <a href="#hardware">07. Hardware</a>
+            <a href="#contact">08. Contact</a>
+        </div>
+    </nav>
+
+    <!-- Page 1: Home -->
+    <section id="home">
+        <div id="particles-js"></div>
+        <img src="ayush.jpeg" alt="Ayush Pratap Singh" class="profile-img" data-aos="zoom-in">
+        <h1 data-aos="fade-up" data-aos-delay="200" style="font-size: 4rem; margin-bottom: 10px; color: #fff; text-shadow: 0 0 15px var(--primary);">AYUSH PRATAP SINGH</h1>
+        <div class="typewriter-container" data-aos="fade-up" data-aos-delay="400">
+            <span class="typewriter"></span>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="600">
+            <a href="#projects" class="btn">View Projects</a>
+            <a href="updated resume.png" download class="btn btn-secondary">Download Resume</a>
+        </div>
+    </section>
+
+    <!-- Page 2: About -->
+    <section id="about">
+        <h2 class="section-title" data-aos="fade-right">02. Core Logic [About]</h2>
+        <div class="card" data-aos="fade-up">
+            <p style="font-size: 1.3rem;">
+                Android Developer and Robotics Engineer with a strong foundation in Machine Learning, Artificial Intelligence, and Python programming. My academic journey has equipped me with hands-on experience in building intelligent systems and solving real-world problems through data-driven approaches. 
+            </p>
+            <br>
+            <p style="font-size: 1.3rem;">
+                I am also skilled in Digital Marketing and Database Management Systems (DBMS), allowing me to integrate technical solutions with effective business strategies. Passionate about continuous learning and innovation, I am eager to contribute to impactful projects and grow as a tech professional.
+            </p>
+        </div>
+    </section>
+
+    <!-- Page 3: Skills -->
+    <section id="skills">
+        <h2 class="section-title" data-aos="fade-right">03. Tech Stack [Skills]</h2>
+        <div class="grid-container">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3>> Languages & Core</h3>
+                <p>Python, Java, Kotlin, HTML, CSS, C++</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3>> AI & Data</h3>
+                <p>Machine Learning, NLP, Artificial Intelligence, Data Analysis, ComfyUI, OpenClaw framework</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <h3>> Databases & Cloud</h3>
+                <p>MySQL, PostgreSQL, Firebase</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400">
+                <h3>> Design & Other</h3>
+                <p>UI/UX Design, Figma, Canva, Digital Marketing, Leadership</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 4: Experience -->
+    <section id="experience">
+        <h2 class="section-title" data-aos="fade-right">04. Execution Threads [Experience]</h2>
+        <div class="grid-container">
+            <div class="card" data-aos="fade-up">
+                <h3>Robotics Engineer</h3>
+                <p style="color: var(--primary);">Vedam World School | July 2026 - Present</p>
+                <ul>
+                    <li>Design and deliver robotics, AI, and STEM learning programs for students.</li>
+                    <li>Develop hands-on projects using Arduino, ESP32, Raspberry Pi, IoT sensors, and embedded systems.</li>
+                    <li>Set up and maintain robotics laboratories, requesting and configuring essential lab equipment (computers, projectors).</li>
+                </ul>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Robotics Engineer</h3>
+                <p style="color: var(--primary);">Future Gurukuls | April 2025 - June 2026</p>
+                <ul>
+                    <li>Delivered robotics and STEM training to students across multiple schools (deployed at Shri Hemkund Public School).</li>
+                    <li>Designed and developed hardware projects and conducted workshops on IoT and Automation.</li>
+                    <li>Assisted schools in establishing robotics laboratories and implementing project-based learning.</li>
+                </ul>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400">
+                <h3>Android Development Intern</h3>
+                <p style="color: var(--primary);">Altvision Technologies | Jan 2024 - Sept 2024</p>
+                <ul>
+                    <li>Developed Android applications using Java and Kotlin.</li>
+                    <li>Worked on app development, debugging, testing, and real-world API integration.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 5: Projects -->
+    <section id="projects">
+        <h2 class="section-title" data-aos="fade-right">05. Compiled Builds [Projects]</h2>
+        <div class="grid-container">
+            <div class="card" data-aos="fade-up">
+                <h3>Farmvision</h3>
+                <p>An application made to help farmers rescue their farms from cattle and crows.</p>
+                <ul>
+                    <li>Worked on the training model through datasets and application UI/UX.</li>
+                    <li>Developed and trained a Machine Learning model achieving 88% accuracy.</li>
+                </ul>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Chatbot Ticketing System</h3>
+                <p>A real-time Machine Learning based Chatbot designed to assist tourists based on user needs.</p>
+                <ul>
+                    <li>Final year academic project encompassing model training and frontend development.</li>
+                    <li>Co-authored and published as a technical research paper in academic journals (May 2025).</li>
+                </ul>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400">
+                <h3>Share-o-file</h3>
+                <p>A social-media style application designed for sharing PDFs, Images, Audio, and Video files.</p>
+                <ul>
+                    <li>Spearheaded backend development utilizing Python and the Django framework.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 6: Education -->
+    <section id="education">
+        <h2 class="section-title" data-aos="fade-right">06. Knowledge Base [Education]</h2>
+        <div class="grid-container">
+            <div class="card" data-aos="fade-up">
+                <h3>B.Tech in Computer Science (AI & ML)</h3>
+                <p style="color: var(--primary);">Babu Banarasi Das Institute of Technology and Management</p>
+                <p>Sept 2021 - July 2025 | Registered with institutional alumni cell.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Intermediate & High School</h3>
+                <p style="color: var(--primary);">The Millennium School, Lucknow</p>
+                <p>Intermediate: April 2020 - March 2021</p>
+                <p>High School: April 2018 - March 2019</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 7: Hardware & Robotics -->
+    <section id="hardware">
+        <h2 class="section-title" data-aos="fade-right">07. Hardware Protocol [Robotics Lab]</h2>
+        <div class="card" data-aos="fade-up">
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                Bridging the gap between software logic and physical actuation. My expertise extends into Makerspace environments, establishing physical laboratories, and creating interactive embedded systems.
+            </p>
+            <ul style="font-size: 1.1rem; line-height: 1.8;">
+                <li><strong>Microcontrollers:</strong> Extensive hands-on logic programming for Arduino, ESP32, and Raspberry Pi architectures.</li>
+                <li><strong>Actuation & Sensory Processing:</strong> Development of hardware loops utilizing servo motors, ultrasonic sensors, and IoT data transmitters.</li>
+                <li><strong>STEM Facilitation:</strong> Deployment of practical laboratory hardware, managing electronic inventories, and orchestrating comprehensive project-based learning modules.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Page 8: Contact -->
+    <section id="contact">
+        <h2 class="section-title" data-aos="fade-right">08. Establish Connection [Contact]</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 50px;">
+            <form data-aos="fade-up">
+                <input type="text" placeholder="Incoming Identity [Name]" required>
+                <input type="email" placeholder="Return Address [Email]" required>
+                <textarea rows="5" placeholder="Transmission Data [Message]" required></textarea>
+                <button type="submit" class="btn" style="width: 200px;">Transmit</button>
+            </form>
+            
+            <div class="card" data-aos="fade-left" style="flex: 1; min-width: 300px;">
+                <h3>System Coordinates</h3>
+                <p><strong>Location:</strong> Lucknow, Uttar Pradesh</p>
+                <p><strong>Phone:</strong> +91 8707876382</p>
+                <p><strong>Email:</strong> ayushpratap8707@gmail.com</p>
+                
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/ayush-pratap-singh-088a6b181/" target="_blank" class="btn btn-secondary">LinkedIn Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <!-- Particles.js for Hero Background -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Typed.js for typing animation -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <!-- AOS for Scroll Animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize Scroll Animations
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: false
+        });
+
+        // Initialize Typing Animation
+        var typed = new Typed('.typewriter', {
+            strings: [
+                "> Robotics Engineer", 
+                "> Android Developer", 
+                "> AI & ML Specialist"
+            ],
+            typeSpeed: 50,
+            backSpeed: 30,
+            loop: true,
+            backDelay: 2000
+        });
+
+        // Initialize Particles Background
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#00ffcc" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.4 },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true, "distance": 150, "color": "#00ffcc", "opacity": 0.3, "width": 1
+                },
+                "move": { "enable": true, "speed": 1.5, "direction": "none" }
+            },
+            "interactivity": {
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 1 } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
